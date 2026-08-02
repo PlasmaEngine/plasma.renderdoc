@@ -1,0 +1,72 @@
+// plasma.renderdoc — GPU frame capture for investigation with RenderDoc.
+//
+// The AUTHORED manifest, kept in source next to the plugin. It declares identity, compatibility,
+// what to load and what to ship. Component hashes and sizes are NOT here: the packaging step
+// computes those and emits them into the published manifest that ships inside the .plpkg.
+//
+// Field reference and validation rules: Docs/PluginPackageManagerPlan.html §05.
+
+PackageInfo
+{
+	// ---- identity -------------------------------------------------------------
+	// Version starts at 1.0.0 rather than inheriting an engine version: this package
+	// versions on its own changes from now on, not on the engine's.
+	string %Id{"plasma.renderdoc"}
+	string %Version{"1.0.0"}
+	string %Publisher{"PlasmaTechnology"}
+	string %License{"MIT"}
+	string %Homepage{"https://plasmagameengine.com"}
+
+	// ---- compatibility --------------------------------------------------------
+	// Must equal plSdkVersion::GetAbiTag() of the engine these binaries were built
+	// against. The build configuration is part of it - a Development and a Shipping
+	// build do not share a binary interface.
+	string %MinEngineVersion{"0.7.0"}
+	string %MaxEngineVersion{"0.7.0"}
+	string %AbiTag{"win64-msvc19-0.7.0-dev"}
+
+	// ---- presentation ---------------------------------------------------------
+	// This artwork already existed in Data/Plugins/Editor/Plugins but the bundle
+	// never referenced it, so nothing ever displayed it. Paths resolve against this
+	// package's root.
+	string %DisplayName{"RenderDoc"}
+	string %Category{"Tools"}
+	string %Description{"Records GPU commands for investigation with RenderDoc. Intended to be enabled only while it is needed - it hooks the graphics device."}
+	string %Icon{"Branding/RenderDocIcon.png"}
+	string %Banner{"Branding/RenderDocBanner.png"}
+
+	// ---- binaries -------------------------------------------------------------
+	// Runtime only: there is no editor-side plugin and no engine-process plugin, so
+	// this package needs no Qt and installs nothing into the editor UI.
+	string %EditorPlugins{}
+	string %EditorEnginePlugins{}
+	string %RuntimePlugins{"plRenderDocPlugin"}
+	string %PackageDependencies{}
+
+	// ---- dependencies ---------------------------------------------------------
+	// None. It binds only to plCore, which is part of the engine rather than a
+	// package, so there is nothing to resolve.
+
+	// ---- components -----------------------------------------------------------
+	Component { string %Name{"manifest"} string %Platform{"any"} }
+	Component { string %Name{"runtime-win64"} string %Platform{"win64"} }
+	Component { string %Name{"icon"} string %Platform{"any"} }
+	Component { string %Name{"banner"} string %Platform{"any"} }
+
+	// renderdoc.dll is 26 MB and the plugin degrades cleanly without it - it logs
+	// that captures are unavailable and carries on. Shipping it by default would
+	// make every install pay for a capability most sessions never use, so it is
+	// opt-in. Anyone with RenderDoc installed already has this library on the
+	// search path and needs nothing from here.
+	// Named for what it is, not for which package owns it - the package is already
+	// known from context, and a name per package would mean editing the catalogue's
+	// component vocabulary every time one ships an optional payload.
+	Component
+	{
+		string %Name{"tool"}
+		string %Platform{"win64"}
+		bool %Optional{true}
+		string %Label{"RenderDoc capture library (26 MB)"}
+		string %Path{"Tools/RenderDoc"}
+	}
+}

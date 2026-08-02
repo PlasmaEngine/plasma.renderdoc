@@ -1,0 +1,17 @@
+/nologo
+/OUT:"E:\PlasmaTech\LocalPackages\plasma.renderdoc\Bin\Windows_x64_Development\plRenderDocPlugin.dll"
+/DLL
+/DEBUG
+/PDB:"E:\PlasmaTech\LocalPackages\plasma.renderdoc\Bin\Windows_x64_Development\plRenderDocPlugin.pdb"
+/INCREMENTAL
+"E:\PlasmaTech\LocalPackages\plasma.renderdoc\Intermediate\Windows_Development\RenderDocPluginModule\RenderDocPluginPCH.cpp.obj"
+"E:\PlasmaTech\LocalPackages\plasma.renderdoc\Intermediate\Windows_Development\RenderDocPluginModule\RenderDocSingleton.cpp.obj"
+"E:\PlasmaTech\PlasmaEngine2\Binaries\Windows_Development\plFoundation.lib"
+"E:\PlasmaTech\PlasmaEngine2\Binaries\Windows_Development\plCore.lib"
+"E:\PlasmaTech\PlasmaEngine2\Binaries\Windows_Development\plTexture.lib"
+"E:\PlasmaTech\PlasmaEngine2\Binaries\Windows_Development\plRendererFoundation.lib"
+"E:\PlasmaTech\PlasmaEngine2\Binaries\Windows_Development\plRendererCore.lib"
+"E:\PlasmaTech\PlasmaEngine2\Binaries\Windows_Development\plAudioSystem.lib"
+"E:\PlasmaTech\PlasmaEngine2\Binaries\Windows_Development\plUtilities.lib"
+"E:\PlasmaTech\PlasmaEngine2\Binaries\Windows_Development\plGameEngine.lib"
+"Shell32.lib"

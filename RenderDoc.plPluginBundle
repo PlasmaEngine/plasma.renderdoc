@@ -1,0 +1,23 @@
+// for a description of the options see:
+// https://plengine.net/pages/docs/editor/editor-plugins.html
+
+PluginInfo
+{
+	string %DisplayName{"RenderDoc"}
+	string %Category{"Tools"}
+	string %MinEngineVersion{"0.7.0"}
+	string %MaxEngineVersion{"0.7.0"}
+	// Artwork already existed under Data/Plugins/Editor/Plugins, but these fields
+	// were empty so nothing ever displayed it. It ships with the package now.
+	string %Icon{"RenderDocIcon.png"}
+	string %Banner{"RenderDocBanner.png"}
+	string %Description{"Adds support for recording GPU commands for investigation with RenderDoc. This plugin should only be enabled while needed during development."}
+	string %EditorPlugins{}
+	string %EditorEnginePlugins{}
+	string %RuntimePlugins{"plRenderDocPlugin"}
+	string %PackageDependencies{}
+	string %RequiredPlugins{}
+	string %ExclusiveFeatures{}
+	string %EnabledInTemplates{}
+	string %PlasmaBuildTargetName{"RenderDocPlugin"}
+}
